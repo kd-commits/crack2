@@ -37,6 +37,7 @@ char * tryWord(char * plaintext, char * hashFilename)
         if (strcmp(line, hash) == 0)
         {
             fclose(fp);
+            free(line);
             return hash;
         }
     }
@@ -44,6 +45,7 @@ char * tryWord(char * plaintext, char * hashFilename)
     //  Close file and free memory
     fclose(fp);
     free(hash);
+    free(line);
 
     //  Return NULL if not found
     return NULL;
@@ -91,5 +93,6 @@ int main(int argc, char *argv[])
     }
     
     fclose(d);
+    free(line);
     printf("%d hashes cracked!\n", count);
 }
