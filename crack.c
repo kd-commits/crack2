@@ -22,11 +22,11 @@ char * tryWord(char * plaintext, char * hashFilename)
         exit(1);
     }
 
-    //  Allocate enough memory for each hashstring
-    char *line = malloc(sizeof(char) * HASH_LEN);
+    //  Allocate enough memory for hash
+    char *line = malloc(HASH_LEN * sizeof(char));
 
     //  Loop through the hash file, one line at a time.
-    while (fgets(line, sizeof(char) * HASH_LEN, fp))
+    while (fgets(line, HASH_LEN, fp))
     {
         //  Trim newline
         char *nl = strchr(line, '\n');
@@ -68,12 +68,12 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    //  Allocate enough memory for the maximum password
-    char *line = malloc(sizeof(char) * PASS_LEN);
+    //  Allocate enough memory for try-words
+    char *line = malloc(PASS_LEN * sizeof(char));
     int count = 0;
 
     //  For each line in the dictionary file
-    while (fgets(line, sizeof(char) * PASS_LEN, d))
+    while (fgets(line, PASS_LEN, d))
     {
         //  Trim newline
         char *nl = strchr(line, '\n');
