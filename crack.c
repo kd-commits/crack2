@@ -13,7 +13,6 @@ char * tryWord(char * plaintext, char * hashFilename)
 {
     //  Hash word
     char *hash = md5(plaintext, strlen(plaintext));
-    char line[HASH_LEN];
 
     //  Open the hash file
     FILE *fp = fopen(hashFilename, "r");
@@ -22,6 +21,9 @@ char * tryWord(char * plaintext, char * hashFilename)
         puts("Cant open hashFile for reading");
         exit(1);
     }
+
+    //  Initialize variables
+    char line[HASH_LEN];
 
     //  Loop through the hash file, one line at a time.
     while (fgets(line, sizeof(line), fp))
@@ -58,7 +60,6 @@ int main(int argc, char *argv[])
     
     //  Open the dictionary file for reading.
     FILE *d = fopen(argv[2], "r");
-
     if (!d)
     {
         puts("Cant open dictionary for reading");
